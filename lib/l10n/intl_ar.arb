@@ -1,0 +1,126 @@
+{
+  "@@locale": "ar",
+
+  "appTitle": "ثاهين",
+
+  "coursesGreeting": "أهلاً بك",
+  "coursesTitle": "دوراتي",
+  "searchHint": "ابحث عن دورة أو مدرب",
+  "languageToggleTooltip": "تبديل اللغة",
+  "themeToggleTooltip": "تبديل المظهر",
+
+  "continueWatchingTitle": "أكمل المشاهدة",
+  "lessonOfTotal": "الدرس {current} من {total}",
+  "@lessonOfTotal": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "stoppedAtRemaining": "توقفت عند {position} / متبقٍ {remaining}",
+  "@stoppedAtRemaining": {
+    "placeholders": {
+      "position": { "type": "String" },
+      "remaining": { "type": "String" }
+    }
+  },
+
+  "allCoursesTitle": "كل الدورات",
+  "lessonsCount": "{count, plural, =0{لا دروس} =1{درس واحد} =2{درسان} few{{count} دروس} many{{count} درساً} other{{count} درس}}",
+  "@lessonsCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "percentLabel": "{percent}%",
+  "@percentLabel": {
+    "placeholders": {
+      "percent": { "type": "int" }
+    }
+  },
+
+  "retry": "إعادة المحاولة",
+  "coursesLoadError": "تعذر تحميل الدورات",
+  "noCoursesYet": "لا توجد دورات بعد",
+  "noSearchResults": "لا توجد نتائج مطابقة",
+  "genericErrorTitle": "حدث خطأ ما",
+  "genericEmptyTitle": "لا يوجد محتوى",
+
+  "courseDetailsSubtitle": "{instructor} · {sections} أقسام · {lessons} دروس",
+  "@courseDetailsSubtitle": {
+    "placeholders": {
+      "instructor": { "type": "String" },
+      "sections": { "type": "int" },
+      "lessons": { "type": "int" }
+    }
+  },
+  "overallProgressLabel": "{percent}% · {completed} من {total}",
+  "@overallProgressLabel": {
+    "placeholders": {
+      "percent": { "type": "int" },
+      "completed": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "sectionNumberLabel": "القسم {number}",
+  "@sectionNumberLabel": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+
+  "statusCompleted": "مكتمل",
+  "statusInProgress": "قيد المشاهدة",
+  "statusNotStarted": "لم يبدأ",
+  "statusLocked": "مقفل",
+
+  "continueLessonButton": "أكمل: {lessonTitle}",
+  "@continueLessonButton": {
+    "placeholders": {
+      "lessonTitle": { "type": "String" }
+    }
+  },
+
+  "lockedSheetTitle": "خطوة واحدة قبل هذا الدرس",
+  "lockedSheetBody": "أكمل درس \"{requiredLesson}\" أولاً لفتح \"{lesson}\"",
+  "@lockedSheetBody": {
+    "placeholders": {
+      "requiredLesson": { "type": "String" },
+      "lesson": { "type": "String" }
+    }
+  },
+  "lockedSheetOpenRequired": "الانتقال إلى \"{requiredLesson}\"",
+  "@lockedSheetOpenRequired": {
+    "placeholders": {
+      "requiredLesson": { "type": "String" }
+    }
+  },
+  "lockedSheetOk": "حسناً",
+
+  "emptyCourseTitle": "لا توجد دروس بعد",
+  "backToCourses": "العودة إلى الدورات",
+
+  "lessonOfTotalWithSection": "الدرس {current} من {total} · {section}",
+  "@lessonOfTotalWithSection": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" },
+      "section": { "type": "String" }
+    }
+  },
+  "autoCompleteHint": "يكتمل تلقائياً عند مشاهدة 90%",
+  "nextLessonLocked": "يُفتح بعد إكمال 90% من هذا الدرس",
+  "nextLessonLabel": "الدرس التالي",
+  "videoLoadError": "تعذّر تشغيل الفيديو",
+  "videoLoadErrorBody": "ملف الدرس مفقود أو تالف. تقدّمك في الدورة محفوظ ولن يتأثر.",
+  "speedMultiplier": "{speed}x",
+  "@speedMultiplier": {
+    "placeholders": {
+      "speed": { "type": "String" }
+    }
+  },
+
+  "courseParseFailure": "تعذر قراءة بيانات الدورة",
+  "progressCacheFailure": "تعذر حفظ التقدم",
+  "courseNotFound": "لم يتم العثور على الدورة"
+}

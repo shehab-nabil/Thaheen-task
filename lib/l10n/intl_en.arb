@@ -1,0 +1,126 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Thaheen",
+
+  "coursesGreeting": "Welcome back",
+  "coursesTitle": "My Courses",
+  "searchHint": "Search a course or instructor",
+  "languageToggleTooltip": "Switch language",
+  "themeToggleTooltip": "Switch theme",
+
+  "continueWatchingTitle": "Continue Watching",
+  "lessonOfTotal": "Lesson {current} of {total}",
+  "@lessonOfTotal": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "stoppedAtRemaining": "Stopped at {position} / {remaining} left",
+  "@stoppedAtRemaining": {
+    "placeholders": {
+      "position": { "type": "String" },
+      "remaining": { "type": "String" }
+    }
+  },
+
+  "allCoursesTitle": "All Courses",
+  "lessonsCount": "{count, plural, =0{No lessons} one{{count} lesson} other{{count} lessons}}",
+  "@lessonsCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "percentLabel": "{percent}%",
+  "@percentLabel": {
+    "placeholders": {
+      "percent": { "type": "int" }
+    }
+  },
+
+  "retry": "Retry",
+  "coursesLoadError": "Couldn't load courses",
+  "noCoursesYet": "No courses yet",
+  "noSearchResults": "No matching results",
+  "genericErrorTitle": "Something went wrong",
+  "genericEmptyTitle": "Nothing here yet",
+
+  "courseDetailsSubtitle": "{instructor} · {sections} sections · {lessons} lessons",
+  "@courseDetailsSubtitle": {
+    "placeholders": {
+      "instructor": { "type": "String" },
+      "sections": { "type": "int" },
+      "lessons": { "type": "int" }
+    }
+  },
+  "overallProgressLabel": "{percent}% · {completed} of {total}",
+  "@overallProgressLabel": {
+    "placeholders": {
+      "percent": { "type": "int" },
+      "completed": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "sectionNumberLabel": "Section {number}",
+  "@sectionNumberLabel": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+
+  "statusCompleted": "Completed",
+  "statusInProgress": "In Progress",
+  "statusNotStarted": "Not Started",
+  "statusLocked": "Locked",
+
+  "continueLessonButton": "Continue: {lessonTitle}",
+  "@continueLessonButton": {
+    "placeholders": {
+      "lessonTitle": { "type": "String" }
+    }
+  },
+
+  "lockedSheetTitle": "One step before this lesson",
+  "lockedSheetBody": "Finish \"{requiredLesson}\" first to unlock \"{lesson}\"",
+  "@lockedSheetBody": {
+    "placeholders": {
+      "requiredLesson": { "type": "String" },
+      "lesson": { "type": "String" }
+    }
+  },
+  "lockedSheetOpenRequired": "Go to \"{requiredLesson}\"",
+  "@lockedSheetOpenRequired": {
+    "placeholders": {
+      "requiredLesson": { "type": "String" }
+    }
+  },
+  "lockedSheetOk": "OK",
+
+  "emptyCourseTitle": "No lessons yet",
+  "backToCourses": "Back to courses",
+
+  "lessonOfTotalWithSection": "Lesson {current} of {total} · {section}",
+  "@lessonOfTotalWithSection": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" },
+      "section": { "type": "String" }
+    }
+  },
+  "autoCompleteHint": "Completes automatically at 90% watched",
+  "nextLessonLocked": "Unlocks after completing 90% of this lesson",
+  "nextLessonLabel": "Next Lesson",
+  "videoLoadError": "Couldn't play the video",
+  "videoLoadErrorBody": "The lesson file is missing or corrupted. Your course progress is saved and unaffected.",
+  "speedMultiplier": "{speed}x",
+  "@speedMultiplier": {
+    "placeholders": {
+      "speed": { "type": "String" }
+    }
+  },
+
+  "courseParseFailure": "Couldn't read course data",
+  "progressCacheFailure": "Couldn't save progress",
+  "courseNotFound": "Course not found"
+}
