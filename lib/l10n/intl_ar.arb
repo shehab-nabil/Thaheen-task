@@ -108,8 +108,8 @@
       "section": { "type": "String" }
     }
   },
-  "autoCompleteHint": "يكتمل تلقائياً عند مشاهدة 90%",
-  "nextLessonLocked": "يُفتح بعد إكمال 90% من هذا الدرس",
+  "autoCompleteHint": "يكتمل تلقائياً عند مشاهدة 99%",
+  "nextLessonLocked": "يُفتح بعد إكمال 99% من هذا الدرس",
   "nextLessonLabel": "الدرس التالي",
   "videoLoadError": "تعذّر تشغيل الفيديو",
   "videoLoadErrorBody": "ملف الدرس مفقود أو تالف. تقدّمك في الدورة محفوظ ولن يتأثر.",

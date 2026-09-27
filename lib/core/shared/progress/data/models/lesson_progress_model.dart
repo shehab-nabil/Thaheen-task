@@ -4,7 +4,7 @@ part 'lesson_progress_model.freezed.dart';
 part 'lesson_progress_model.g.dart';
 
 @freezed
-class LessonProgressModel with _$LessonProgressModel {
+abstract class LessonProgressModel with _$LessonProgressModel {
   const factory LessonProgressModel({
     required String lessonId,
     required int positionMs,

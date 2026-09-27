@@ -4,7 +4,7 @@ part 'localized_text_model.freezed.dart';
 part 'localized_text_model.g.dart';
 
 @freezed
-class LocalizedTextModel with _$LocalizedTextModel {
+abstract class LocalizedTextModel with _$LocalizedTextModel {
   const LocalizedTextModel._();
 
   const factory LocalizedTextModel({

@@ -360,20 +360,20 @@ class S {
     );
   }
 
-  /// `يكتمل تلقائياً عند مشاهدة 90%`
+  /// `يكتمل تلقائياً عند مشاهدة 99%`
   String get autoCompleteHint {
     return Intl.message(
-      'يكتمل تلقائياً عند مشاهدة 90%',
+      'يكتمل تلقائياً عند مشاهدة 99%',
       name: 'autoCompleteHint',
       desc: '',
       args: [],
     );
   }
 
-  /// `يُفتح بعد إكمال 90% من هذا الدرس`
+  /// `يُفتح بعد إكمال 99% من هذا الدرس`
   String get nextLessonLocked {
     return Intl.message(
-      'يُفتح بعد إكمال 90% من هذا الدرس',
+      'يُفتح بعد إكمال 99% من هذا الدرس',
       name: 'nextLessonLocked',
       desc: '',
       args: [],

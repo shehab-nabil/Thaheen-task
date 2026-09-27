@@ -108,8 +108,8 @@
       "section": { "type": "String" }
     }
   },
-  "autoCompleteHint": "Completes automatically at 90% watched",
-  "nextLessonLocked": "Unlocks after completing 90% of this lesson",
+  "autoCompleteHint": "Completes automatically at 99% watched",
+  "nextLessonLocked": "Unlocks after completing 99% of this lesson",
   "nextLessonLabel": "Next Lesson",
   "videoLoadError": "Couldn't play the video",
   "videoLoadErrorBody": "The lesson file is missing or corrupted. Your course progress is saved and unaffected.",

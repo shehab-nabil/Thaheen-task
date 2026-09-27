@@ -7,13 +7,25 @@ import 'lesson_status.dart';
 class ProgressCalculator {
   const ProgressCalculator();
 
-  static const double completionThreshold = 0.9;
+  static const double completionThreshold = 0.99;
   static const int resumeNearEndThresholdSeconds = 2;
 
-  /// A lesson auto-completes once watched position reaches 90% of duration.
+  /// A lesson auto-completes once watched position reaches 99% of duration.
   bool isCompleted({required int positionMs, required int durationMs}) {
     if (durationMs <= 0) return false;
     return positionMs >= durationMs * completionThreshold;
+  }
+
+  /// Whether a lesson counts as completed given whether it was already
+  /// completed before. Completion is monotonic: once true, it never
+  /// reverts to false even if a later position update is earlier in time.
+  bool isCompletedGiven({
+    required bool wasCompleted,
+    required int positionMs,
+    required int durationMs,
+  }) {
+    return wasCompleted ||
+        isCompleted(positionMs: positionMs, durationMs: durationMs);
   }
 
   /// Status of every lesson in [lessonIds] (flattened, course-ordered).

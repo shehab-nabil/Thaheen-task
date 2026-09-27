@@ -55,7 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "allCoursesTitle": MessageLookupByLibrary.simpleMessage("All Courses"),
     "appTitle": MessageLookupByLibrary.simpleMessage("Thaheen"),
     "autoCompleteHint": MessageLookupByLibrary.simpleMessage(
-      "Completes automatically at 90% watched",
+      "Completes automatically at 99% watched",
     ),
     "backToCourses": MessageLookupByLibrary.simpleMessage("Back to courses"),
     "continueLessonButton": m0,
@@ -93,7 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "nextLessonLabel": MessageLookupByLibrary.simpleMessage("Next Lesson"),
     "nextLessonLocked": MessageLookupByLibrary.simpleMessage(
-      "Unlocks after completing 90% of this lesson",
+      "Unlocks after completing 99% of this lesson",
     ),
     "noCoursesYet": MessageLookupByLibrary.simpleMessage("No courses yet"),
     "noSearchResults": MessageLookupByLibrary.simpleMessage(

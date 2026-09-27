@@ -55,7 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "allCoursesTitle": MessageLookupByLibrary.simpleMessage("كل الدورات"),
     "appTitle": MessageLookupByLibrary.simpleMessage("ثاهين"),
     "autoCompleteHint": MessageLookupByLibrary.simpleMessage(
-      "يكتمل تلقائياً عند مشاهدة 90%",
+      "يكتمل تلقائياً عند مشاهدة 99%",
     ),
     "backToCourses": MessageLookupByLibrary.simpleMessage("العودة إلى الدورات"),
     "continueLessonButton": m0,
@@ -93,7 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "nextLessonLabel": MessageLookupByLibrary.simpleMessage("الدرس التالي"),
     "nextLessonLocked": MessageLookupByLibrary.simpleMessage(
-      "يُفتح بعد إكمال 90% من هذا الدرس",
+      "يُفتح بعد إكمال 99% من هذا الدرس",
     ),
     "noCoursesYet": MessageLookupByLibrary.simpleMessage("لا توجد دورات بعد"),
     "noSearchResults": MessageLookupByLibrary.simpleMessage(
