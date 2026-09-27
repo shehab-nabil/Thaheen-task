@@ -28,4 +28,21 @@ abstract class CourseModel with _$CourseModel {
       sections.expand((section) => section.lessons).toList();
 
   int get totalLessons => allLessons.length;
+
+  /// Finds the section, lesson, and flattened (course-wide) index for
+  /// [lessonId], or null if this course has no such lesson.
+  ({SectionModel section, LessonModel lesson, int index})? locateLesson(
+    String lessonId,
+  ) {
+    var index = 0;
+    for (final section in sections) {
+      for (final lesson in section.lessons) {
+        if (lesson.id == lessonId) {
+          return (section: section, lesson: lesson, index: index);
+        }
+        index++;
+      }
+    }
+    return null;
+  }
 }
