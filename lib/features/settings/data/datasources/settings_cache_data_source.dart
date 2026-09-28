@@ -23,7 +23,8 @@ class SettingsCacheDataSourceImpl implements SettingsCacheDataSource {
   static const double _defaultPlaybackSpeed = 1.0;
 
   @override
-  String getLocale() => _preferences.getString(CacheKeys.locale) ?? _defaultLocale;
+  String getLocale() =>
+      _preferences.getString(CacheKeys.locale) ?? _defaultLocale;
 
   @override
   Future<void> setLocale(String locale) {
@@ -46,7 +47,8 @@ class SettingsCacheDataSourceImpl implements SettingsCacheDataSource {
 
   @override
   double getPlaybackSpeed() {
-    return _preferences.getDouble(CacheKeys.playbackSpeed) ?? _defaultPlaybackSpeed;
+    return _preferences.getDouble(CacheKeys.playbackSpeed) ??
+        _defaultPlaybackSpeed;
   }
 
   @override

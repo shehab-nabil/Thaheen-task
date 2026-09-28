@@ -35,37 +35,37 @@ class GetLessonPlaybackDataUseCase {
     required String lessonId,
   }) async {
     final coursesResult = await _coursesRepository.getCourses();
-    return coursesResult.fold(
-      (failure) async => Left(failure),
-      (courses) async {
-        final courseMatches = courses.where((course) => course.id == courseId);
-        if (courseMatches.isEmpty) {
-          return Left(ParseFailure(S.current.courseNotFound));
-        }
-        final course = courseMatches.first;
+    return coursesResult.fold((failure) async => Left(failure), (
+      courses,
+    ) async {
+      final courseMatches = courses.where((course) => course.id == courseId);
+      if (courseMatches.isEmpty) {
+        return Left(ParseFailure(S.current.courseNotFound));
+      }
+      final course = courseMatches.first;
 
-        final located = course.locateLesson(lessonId);
-        if (located == null) {
-          return Left(ParseFailure(S.current.courseNotFound));
-        }
+      final located = course.locateLesson(lessonId);
+      if (located == null) {
+        return Left(ParseFailure(S.current.courseNotFound));
+      }
 
-        final lessonIdsInOrder =
-            course.allLessons.map((item) => item.id).toList();
+      final lessonIdsInOrder = course.allLessons
+          .map((item) => item.id)
+          .toList();
 
-        final progressResult = await _progressRepository.getAllProgress();
-        return progressResult.fold(
-          Left.new,
-          (progressByLessonId) => Right((
-            course: course,
-            section: located.section,
-            lesson: located.lesson,
-            lessonIndex: located.index,
-            lessonIdsInOrder: lessonIdsInOrder,
-            progress: progressByLessonId[lessonId],
-            progressByLessonId: progressByLessonId,
-          )),
-        );
-      },
-    );
+      final progressResult = await _progressRepository.getAllProgress();
+      return progressResult.fold(
+        Left.new,
+        (progressByLessonId) => Right((
+          course: course,
+          section: located.section,
+          lesson: located.lesson,
+          lessonIndex: located.index,
+          lessonIdsInOrder: lessonIdsInOrder,
+          progress: progressByLessonId[lessonId],
+          progressByLessonId: progressByLessonId,
+        )),
+      );
+    });
   }
 }

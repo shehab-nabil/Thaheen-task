@@ -10,7 +10,7 @@ abstract class CoursesLocalDataSource {
 
 class CoursesLocalDataSourceImpl implements CoursesLocalDataSource {
   CoursesLocalDataSourceImpl({AssetBundle? bundle})
-      : _bundle = bundle ?? rootBundle;
+    : _bundle = bundle ?? rootBundle;
 
   static const String _assetPath = 'assets/data/courses.json';
 

@@ -6,24 +6,34 @@ class AppTextStyles {
   static const String heading = 'ReadexPro';
   static const String body = 'IBMPlexSansArabic';
 
+  // ReadexPro ships as a single variable font (weight axis). fontWeight
+  // alone can be ignored by some renderers for variable fonts, so the axis
+  // is also set explicitly via fontVariations as a safety net.
+  static const List<FontVariation> _semiBoldVariation = [
+    FontVariation('wght', 600),
+  ];
+
   static TextTheme textTheme(Color primaryText, Color secondaryText) {
     return TextTheme(
       headlineMedium: TextStyle(
         fontFamily: heading,
         fontSize: 24,
         fontWeight: FontWeight.w600,
+        fontVariations: _semiBoldVariation,
         color: primaryText,
       ),
       headlineSmall: TextStyle(
         fontFamily: heading,
         fontSize: 20,
         fontWeight: FontWeight.w600,
+        fontVariations: _semiBoldVariation,
         color: primaryText,
       ),
       titleLarge: TextStyle(
         fontFamily: heading,
         fontSize: 18,
         fontWeight: FontWeight.w600,
+        fontVariations: _semiBoldVariation,
         color: primaryText,
       ),
       titleMedium: TextStyle(

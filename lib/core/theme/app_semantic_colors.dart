@@ -70,10 +70,17 @@ class AppSemanticColors extends ThemeExtension<AppSemanticColors> {
       border: Color.lerp(border, other.border, t)!,
       primarySoft: Color.lerp(primarySoft, other.primarySoft, t)!,
       inProgressText: Color.lerp(inProgressText, other.inProgressText, t)!,
-      inProgressBackground:
-          Color.lerp(inProgressBackground, other.inProgressBackground, t)!,
+      inProgressBackground: Color.lerp(
+        inProgressBackground,
+        other.inProgressBackground,
+        t,
+      )!,
       lockedIcon: Color.lerp(lockedIcon, other.lockedIcon, t)!,
-      lockedBackground: Color.lerp(lockedBackground, other.lockedBackground, t)!,
+      lockedBackground: Color.lerp(
+        lockedBackground,
+        other.lockedBackground,
+        t,
+      )!,
       track: Color.lerp(track, other.track, t)!,
     );
   }

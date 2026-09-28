@@ -16,8 +16,12 @@ class CoursesRepositoryImpl implements CoursesRepository {
     try {
       final courses = await _localDataSource.getCourses();
       return Right(courses);
-    } catch (_) {
+    } on FormatException {
       return Left(ParseFailure(S.current.courseParseFailure));
+    } catch (_) {
+      // Anything other than malformed JSON content is treated as the
+      // asset itself failing to load (missing file, bundle error, etc).
+      return Left(AssetFailure(S.current.courseAssetMissing));
     }
   }
 }

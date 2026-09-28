@@ -128,12 +128,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( CourseModel course,  List<LessonStatus> lessonStatuses,  int progressPercent,  int completedLessons,  LessonModel? nextUnfinishedLesson,  LockedLessonTap? lockedTap)?  success,TResult Function()?  empty,TResult Function( String message)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( CourseModel course,  List<LessonStatus> lessonStatuses,  List<int> lessonProgressPercent,  int progressPercent,  int completedLessons,  LessonModel? nextUnfinishedLesson,  LockedLessonTap? lockedTap)?  success,TResult Function()?  empty,TResult Function( String message)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case CourseDetailsInitial() when initial != null:
 return initial();case CourseDetailsLoading() when loading != null:
 return loading();case CourseDetailsSuccess() when success != null:
-return success(_that.course,_that.lessonStatuses,_that.progressPercent,_that.completedLessons,_that.nextUnfinishedLesson,_that.lockedTap);case CourseDetailsEmpty() when empty != null:
+return success(_that.course,_that.lessonStatuses,_that.lessonProgressPercent,_that.progressPercent,_that.completedLessons,_that.nextUnfinishedLesson,_that.lockedTap);case CourseDetailsEmpty() when empty != null:
 return empty();case CourseDetailsFailure() when failure != null:
 return failure(_that.message);case _:
   return orElse();
@@ -153,12 +153,12 @@ return failure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( CourseModel course,  List<LessonStatus> lessonStatuses,  int progressPercent,  int completedLessons,  LessonModel? nextUnfinishedLesson,  LockedLessonTap? lockedTap)  success,required TResult Function()  empty,required TResult Function( String message)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( CourseModel course,  List<LessonStatus> lessonStatuses,  List<int> lessonProgressPercent,  int progressPercent,  int completedLessons,  LessonModel? nextUnfinishedLesson,  LockedLessonTap? lockedTap)  success,required TResult Function()  empty,required TResult Function( String message)  failure,}) {final _that = this;
 switch (_that) {
 case CourseDetailsInitial():
 return initial();case CourseDetailsLoading():
 return loading();case CourseDetailsSuccess():
-return success(_that.course,_that.lessonStatuses,_that.progressPercent,_that.completedLessons,_that.nextUnfinishedLesson,_that.lockedTap);case CourseDetailsEmpty():
+return success(_that.course,_that.lessonStatuses,_that.lessonProgressPercent,_that.progressPercent,_that.completedLessons,_that.nextUnfinishedLesson,_that.lockedTap);case CourseDetailsEmpty():
 return empty();case CourseDetailsFailure():
 return failure(_that.message);}
 }
@@ -174,12 +174,12 @@ return failure(_that.message);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( CourseModel course,  List<LessonStatus> lessonStatuses,  int progressPercent,  int completedLessons,  LessonModel? nextUnfinishedLesson,  LockedLessonTap? lockedTap)?  success,TResult? Function()?  empty,TResult? Function( String message)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( CourseModel course,  List<LessonStatus> lessonStatuses,  List<int> lessonProgressPercent,  int progressPercent,  int completedLessons,  LessonModel? nextUnfinishedLesson,  LockedLessonTap? lockedTap)?  success,TResult? Function()?  empty,TResult? Function( String message)?  failure,}) {final _that = this;
 switch (_that) {
 case CourseDetailsInitial() when initial != null:
 return initial();case CourseDetailsLoading() when loading != null:
 return loading();case CourseDetailsSuccess() when success != null:
-return success(_that.course,_that.lessonStatuses,_that.progressPercent,_that.completedLessons,_that.nextUnfinishedLesson,_that.lockedTap);case CourseDetailsEmpty() when empty != null:
+return success(_that.course,_that.lessonStatuses,_that.lessonProgressPercent,_that.progressPercent,_that.completedLessons,_that.nextUnfinishedLesson,_that.lockedTap);case CourseDetailsEmpty() when empty != null:
 return empty();case CourseDetailsFailure() when failure != null:
 return failure(_that.message);case _:
   return null;
@@ -257,7 +257,7 @@ String toString() {
 
 
 class CourseDetailsSuccess implements CourseDetailsState {
-  const CourseDetailsSuccess({required this.course, required final  List<LessonStatus> lessonStatuses, required this.progressPercent, required this.completedLessons, this.nextUnfinishedLesson, this.lockedTap}): _lessonStatuses = lessonStatuses;
+  const CourseDetailsSuccess({required this.course, required final  List<LessonStatus> lessonStatuses, required final  List<int> lessonProgressPercent, required this.progressPercent, required this.completedLessons, this.nextUnfinishedLesson, this.lockedTap}): _lessonStatuses = lessonStatuses,_lessonProgressPercent = lessonProgressPercent;
   
 
  final  CourseModel course;
@@ -266,6 +266,17 @@ class CourseDetailsSuccess implements CourseDetailsState {
   if (_lessonStatuses is EqualUnmodifiableListView) return _lessonStatuses;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_lessonStatuses);
+}
+
+/// Parallel to [lessonStatuses]: each lesson's watched percent, used
+/// for the in-progress mini progress bar on its tile.
+ final  List<int> _lessonProgressPercent;
+/// Parallel to [lessonStatuses]: each lesson's watched percent, used
+/// for the in-progress mini progress bar on its tile.
+ List<int> get lessonProgressPercent {
+  if (_lessonProgressPercent is EqualUnmodifiableListView) return _lessonProgressPercent;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_lessonProgressPercent);
 }
 
  final  int progressPercent;
@@ -283,16 +294,16 @@ $CourseDetailsSuccessCopyWith<CourseDetailsSuccess> get copyWith => _$CourseDeta
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CourseDetailsSuccess&&(identical(other.course, course) || other.course == course)&&const DeepCollectionEquality().equals(other._lessonStatuses, _lessonStatuses)&&(identical(other.progressPercent, progressPercent) || other.progressPercent == progressPercent)&&(identical(other.completedLessons, completedLessons) || other.completedLessons == completedLessons)&&(identical(other.nextUnfinishedLesson, nextUnfinishedLesson) || other.nextUnfinishedLesson == nextUnfinishedLesson)&&(identical(other.lockedTap, lockedTap) || other.lockedTap == lockedTap));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CourseDetailsSuccess&&(identical(other.course, course) || other.course == course)&&const DeepCollectionEquality().equals(other._lessonStatuses, _lessonStatuses)&&const DeepCollectionEquality().equals(other._lessonProgressPercent, _lessonProgressPercent)&&(identical(other.progressPercent, progressPercent) || other.progressPercent == progressPercent)&&(identical(other.completedLessons, completedLessons) || other.completedLessons == completedLessons)&&(identical(other.nextUnfinishedLesson, nextUnfinishedLesson) || other.nextUnfinishedLesson == nextUnfinishedLesson)&&(identical(other.lockedTap, lockedTap) || other.lockedTap == lockedTap));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,course,const DeepCollectionEquality().hash(_lessonStatuses),progressPercent,completedLessons,nextUnfinishedLesson,lockedTap);
+int get hashCode => Object.hash(runtimeType,course,const DeepCollectionEquality().hash(_lessonStatuses),const DeepCollectionEquality().hash(_lessonProgressPercent),progressPercent,completedLessons,nextUnfinishedLesson,lockedTap);
 
 @override
 String toString() {
-  return 'CourseDetailsState.success(course: $course, lessonStatuses: $lessonStatuses, progressPercent: $progressPercent, completedLessons: $completedLessons, nextUnfinishedLesson: $nextUnfinishedLesson, lockedTap: $lockedTap)';
+  return 'CourseDetailsState.success(course: $course, lessonStatuses: $lessonStatuses, lessonProgressPercent: $lessonProgressPercent, progressPercent: $progressPercent, completedLessons: $completedLessons, nextUnfinishedLesson: $nextUnfinishedLesson, lockedTap: $lockedTap)';
 }
 
 
@@ -303,7 +314,7 @@ abstract mixin class $CourseDetailsSuccessCopyWith<$Res> implements $CourseDetai
   factory $CourseDetailsSuccessCopyWith(CourseDetailsSuccess value, $Res Function(CourseDetailsSuccess) _then) = _$CourseDetailsSuccessCopyWithImpl;
 @useResult
 $Res call({
- CourseModel course, List<LessonStatus> lessonStatuses, int progressPercent, int completedLessons, LessonModel? nextUnfinishedLesson, LockedLessonTap? lockedTap
+ CourseModel course, List<LessonStatus> lessonStatuses, List<int> lessonProgressPercent, int progressPercent, int completedLessons, LessonModel? nextUnfinishedLesson, LockedLessonTap? lockedTap
 });
 
 
@@ -320,11 +331,12 @@ class _$CourseDetailsSuccessCopyWithImpl<$Res>
 
 /// Create a copy of CourseDetailsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? course = null,Object? lessonStatuses = null,Object? progressPercent = null,Object? completedLessons = null,Object? nextUnfinishedLesson = freezed,Object? lockedTap = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? course = null,Object? lessonStatuses = null,Object? lessonProgressPercent = null,Object? progressPercent = null,Object? completedLessons = null,Object? nextUnfinishedLesson = freezed,Object? lockedTap = freezed,}) {
   return _then(CourseDetailsSuccess(
 course: null == course ? _self.course : course // ignore: cast_nullable_to_non_nullable
 as CourseModel,lessonStatuses: null == lessonStatuses ? _self._lessonStatuses : lessonStatuses // ignore: cast_nullable_to_non_nullable
-as List<LessonStatus>,progressPercent: null == progressPercent ? _self.progressPercent : progressPercent // ignore: cast_nullable_to_non_nullable
+as List<LessonStatus>,lessonProgressPercent: null == lessonProgressPercent ? _self._lessonProgressPercent : lessonProgressPercent // ignore: cast_nullable_to_non_nullable
+as List<int>,progressPercent: null == progressPercent ? _self.progressPercent : progressPercent // ignore: cast_nullable_to_non_nullable
 as int,completedLessons: null == completedLessons ? _self.completedLessons : completedLessons // ignore: cast_nullable_to_non_nullable
 as int,nextUnfinishedLesson: freezed == nextUnfinishedLesson ? _self.nextUnfinishedLesson : nextUnfinishedLesson // ignore: cast_nullable_to_non_nullable
 as LessonModel?,lockedTap: freezed == lockedTap ? _self.lockedTap : lockedTap // ignore: cast_nullable_to_non_nullable

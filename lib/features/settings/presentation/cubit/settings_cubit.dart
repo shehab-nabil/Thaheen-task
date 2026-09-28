@@ -6,13 +6,13 @@ import 'settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit(this._dataSource)
-      : super(
-          SettingsState(
-            locale: _dataSource.getLocale(),
-            themeMode: _dataSource.getThemeMode(),
-            playbackSpeed: _dataSource.getPlaybackSpeed(),
-          ),
-        );
+    : super(
+        SettingsState(
+          locale: _dataSource.getLocale(),
+          themeMode: _dataSource.getThemeMode(),
+          playbackSpeed: _dataSource.getPlaybackSpeed(),
+        ),
+      );
 
   final SettingsCacheDataSource _dataSource;
 

@@ -18,18 +18,15 @@ class MarkCompletedUseCase {
     required int durationMs,
   }) async {
     final existingResult = await _repository.getProgress(lessonId);
-    return existingResult.fold(
-      (failure) async => Left(failure),
-      (existing) {
-        final updated = LessonProgressModel(
-          lessonId: lessonId,
-          positionMs: positionMs,
-          durationMs: durationMs,
-          isCompleted: true,
-          updatedAt: DateTime.now().millisecondsSinceEpoch,
-        );
-        return _repository.saveProgress(updated);
-      },
-    );
+    return existingResult.fold((failure) async => Left(failure), (existing) {
+      final updated = LessonProgressModel(
+        lessonId: lessonId,
+        positionMs: positionMs,
+        durationMs: durationMs,
+        isCompleted: true,
+        updatedAt: DateTime.now().millisecondsSinceEpoch,
+      );
+      return _repository.saveProgress(updated);
+    });
   }
 }

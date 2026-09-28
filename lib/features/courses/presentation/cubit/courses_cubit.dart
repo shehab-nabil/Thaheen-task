@@ -19,10 +19,44 @@ class CoursesCubit extends Cubit<CoursesState> {
   final GetAllProgressUseCase _getAllProgressUseCase;
   final ProgressCalculator _calculator;
 
+  /// Remembered from the last [search] call so [refresh] can keep the
+  /// active filter applied after reloading.
+  String _lastLanguageCode = 'ar';
+
   Future<void> loadCourses() async {
     if (state is CoursesLoading) return;
     emit(const CoursesState.loading());
+    await _reload(query: '');
+  }
 
+  /// Reloads courses and progress without flashing the loading skeleton or
+  /// dropping the current search query. Intended for a silent refresh when
+  /// returning from the player, where a full-screen loading state would be
+  /// jarring and the user's search shouldn't reset.
+  Future<void> refresh() async {
+    final current = state;
+    if (current is! CoursesSuccess) {
+      return loadCourses();
+    }
+    await _reload(query: current.query);
+  }
+
+  /// Filters the already-loaded courses by title/instructor in
+  /// [languageCode]. No-op unless courses are already loaded; progress
+  /// figures and the continue-watching card are unaffected by search.
+  void search(String query, String languageCode) {
+    _lastLanguageCode = languageCode;
+    final current = state;
+    if (current is! CoursesSuccess) return;
+    emit(
+      current.copyWith(
+        filteredCourses: _filter(current.courses, query, languageCode),
+        query: query,
+      ),
+    );
+  }
+
+  Future<void> _reload({required String query}) async {
     final coursesResult = await _getCoursesUseCase();
     if (isClosed) return;
 
@@ -33,38 +67,32 @@ class CoursesCubit extends Cubit<CoursesState> {
         if (isClosed) return;
         progressResult.fold(
           (failure) => emit(CoursesState.failure(failure.message)),
-          (progressByLessonId) => _emitLoaded(courses, progressByLessonId),
+          (progressByLessonId) =>
+              _emitLoaded(courses, progressByLessonId, query: query),
         );
       },
     );
   }
 
-  /// Filters the already-loaded courses by title/instructor in
-  /// [languageCode]. No-op unless courses are already loaded; progress
-  /// figures and the continue-watching card are unaffected by search.
-  void search(String query, String languageCode) {
-    final current = state;
-    if (current is! CoursesSuccess) return;
-
-    if (query.isEmpty) {
-      emit(current.copyWith(filteredCourses: current.courses, query: query));
-      return;
-    }
-
+  List<CourseModel> _filter(
+    List<CourseModel> courses,
+    String query,
+    String languageCode,
+  ) {
+    if (query.isEmpty) return courses;
     final lowerQuery = query.toLowerCase();
-    final filtered = current.courses.where((course) {
+    return courses.where((course) {
       final title = course.title.resolve(languageCode).toLowerCase();
       final instructor = course.instructor.resolve(languageCode).toLowerCase();
       return title.contains(lowerQuery) || instructor.contains(lowerQuery);
     }).toList();
-
-    emit(current.copyWith(filteredCourses: filtered, query: query));
   }
 
   void _emitLoaded(
     List<CourseModel> courses,
-    Map<String, LessonProgressModel> progressByLessonId,
-  ) {
+    Map<String, LessonProgressModel> progressByLessonId, {
+    required String query,
+  }) {
     if (courses.isEmpty) {
       emit(const CoursesState.empty());
       return;
@@ -78,14 +106,18 @@ class CoursesCubit extends Cubit<CoursesState> {
         ),
     };
 
-    final continueWatching = _buildContinueWatching(courses, progressByLessonId);
+    final continueWatching = _buildContinueWatching(
+      courses,
+      progressByLessonId,
+    );
 
     emit(
       CoursesState.success(
         courses: courses,
-        filteredCourses: courses,
+        filteredCourses: _filter(courses, query, _lastLanguageCode),
         progressPercentByCourseId: progressPercentByCourseId,
         continueWatching: continueWatching,
+        query: query,
       ),
     );
   }

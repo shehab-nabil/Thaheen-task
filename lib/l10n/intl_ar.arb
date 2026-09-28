@@ -1,7 +1,7 @@
 {
   "@@locale": "ar",
 
-  "appTitle": "ثاهين",
+  "appTitle": "ذهين",
 
   "coursesGreeting": "أهلاً بك",
   "coursesTitle": "دوراتي",
@@ -46,12 +46,18 @@
   "genericErrorTitle": "حدث خطأ ما",
   "genericEmptyTitle": "لا يوجد محتوى",
 
-  "courseDetailsSubtitle": "{instructor} · {sections} أقسام · {lessons} دروس",
+  "courseDetailsSubtitle": "{instructor} · {sectionsText} · {lessonsText}",
   "@courseDetailsSubtitle": {
     "placeholders": {
       "instructor": { "type": "String" },
-      "sections": { "type": "int" },
-      "lessons": { "type": "int" }
+      "sectionsText": { "type": "String" },
+      "lessonsText": { "type": "String" }
+    }
+  },
+  "sectionsCount": "{count, plural, =0{لا أقسام} =1{قسم واحد} =2{قسمان} few{{count} أقسام} many{{count} قسماً} other{{count} قسم}}",
+  "@sectionsCount": {
+    "placeholders": {
+      "count": { "type": "int" }
     }
   },
   "overallProgressLabel": "{percent}% · {completed} من {total}",
@@ -108,8 +114,18 @@
       "section": { "type": "String" }
     }
   },
-  "autoCompleteHint": "يكتمل تلقائياً عند مشاهدة 99%",
-  "nextLessonLocked": "يُفتح بعد إكمال 99% من هذا الدرس",
+  "autoCompleteHint": "يكتمل تلقائياً عند مشاهدة {percent}%",
+  "@autoCompleteHint": {
+    "placeholders": {
+      "percent": { "type": "int" }
+    }
+  },
+  "nextLessonLocked": "يُفتح بعد إكمال {percent}% من هذا الدرس",
+  "@nextLessonLocked": {
+    "placeholders": {
+      "percent": { "type": "int" }
+    }
+  },
   "nextLessonLabel": "الدرس التالي",
   "videoLoadError": "تعذّر تشغيل الفيديو",
   "videoLoadErrorBody": "ملف الدرس مفقود أو تالف. تقدّمك في الدورة محفوظ ولن يتأثر.",
@@ -121,6 +137,7 @@
   },
 
   "courseParseFailure": "تعذر قراءة بيانات الدورة",
+  "courseAssetMissing": "ملف بيانات الدورات غير موجود",
   "progressCacheFailure": "تعذر حفظ التقدم",
   "courseNotFound": "لم يتم العثور على الدورة"
 }

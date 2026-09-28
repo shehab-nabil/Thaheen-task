@@ -13,7 +13,7 @@ class ProgressRepositoryImpl implements ProgressRepository {
 
   @override
   Future<Either<Failure, Map<String, LessonProgressModel>>>
-      getAllProgress() async {
+  getAllProgress() async {
     try {
       return Right(_localDataSource.getAll());
     } catch (_) {

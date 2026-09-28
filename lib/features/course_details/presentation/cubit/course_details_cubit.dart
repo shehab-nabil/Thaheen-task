@@ -20,10 +20,25 @@ class CourseDetailsCubit extends Cubit<CourseDetailsState> {
   final GetAllProgressUseCase _getAllProgressUseCase;
   final ProgressCalculator _calculator;
 
+  String? _lastCourseId;
+
   Future<void> loadCourse(String courseId) async {
     if (state is CourseDetailsLoading) return;
+    _lastCourseId = courseId;
     emit(const CourseDetailsState.loading());
+    await _reload(courseId);
+  }
 
+  /// Reloads the same course without flashing the loading skeleton.
+  /// Intended for a silent refresh when returning from the player, since a
+  /// completed lesson can change every status/lock/progress figure shown.
+  Future<void> refresh() async {
+    final courseId = _lastCourseId;
+    if (courseId == null) return;
+    await _reload(courseId);
+  }
+
+  Future<void> _reload(String courseId) async {
     final courseResult = await _getCourseByIdUseCase(courseId);
     if (isClosed) return;
 
@@ -91,8 +106,9 @@ class CourseDetailsCubit extends Cubit<CourseDetailsState> {
       lessonIds: lessonIds,
       progressByLessonId: progressByLessonId,
     );
-    final completedCount =
-        statuses.where((status) => status == LessonStatus.completed).length;
+    final completedCount = statuses
+        .where((status) => status == LessonStatus.completed)
+        .length;
 
     LessonModel? nextUnfinished;
     for (var i = 0; i < lessons.length; i++) {
@@ -102,14 +118,27 @@ class CourseDetailsCubit extends Cubit<CourseDetailsState> {
       }
     }
 
+    final lessonProgressPercent = [
+      for (final lesson in lessons)
+        _lessonPercent(progressByLessonId[lesson.id]),
+    ];
+
     emit(
       CourseDetailsState.success(
         course: course,
         lessonStatuses: statuses,
+        lessonProgressPercent: lessonProgressPercent,
         progressPercent: percent,
         completedLessons: completedCount,
         nextUnfinishedLesson: nextUnfinished,
       ),
     );
+  }
+
+  int _lessonPercent(LessonProgressModel? progress) {
+    if (progress == null || progress.durationMs <= 0) return 0;
+    return ((progress.positionMs / progress.durationMs) * 100)
+        .clamp(0, 100)
+        .round();
   }
 }

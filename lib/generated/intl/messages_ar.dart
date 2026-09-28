@@ -20,49 +20,57 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(lessonTitle) => "أكمل: ${lessonTitle}";
+  static String m0(percent) => "يكتمل تلقائياً عند مشاهدة ${percent}%";
 
-  static String m1(instructor, sections, lessons) =>
-      "${instructor} · ${sections} أقسام · ${lessons} دروس";
+  static String m1(lessonTitle) => "أكمل: ${lessonTitle}";
 
-  static String m2(current, total) => "الدرس ${current} من ${total}";
+  static String m2(instructor, sectionsText, lessonsText) =>
+      "${instructor} · ${sectionsText} · ${lessonsText}";
 
-  static String m3(current, total, section) =>
+  static String m3(current, total) => "الدرس ${current} من ${total}";
+
+  static String m4(current, total, section) =>
       "الدرس ${current} من ${total} · ${section}";
 
-  static String m4(count) =>
+  static String m5(count) =>
       "${Intl.plural(count, zero: 'لا دروس', one: 'درس واحد', two: 'درسان', few: '${count} دروس', many: '${count} درساً', other: '${count} درس')}";
 
-  static String m5(requiredLesson, lesson) =>
+  static String m6(requiredLesson, lesson) =>
       "أكمل درس \"${requiredLesson}\" أولاً لفتح \"${lesson}\"";
 
-  static String m6(requiredLesson) => "الانتقال إلى \"${requiredLesson}\"";
+  static String m7(requiredLesson) => "الانتقال إلى \"${requiredLesson}\"";
 
-  static String m7(percent, completed, total) =>
+  static String m8(percent) => "يُفتح بعد إكمال ${percent}% من هذا الدرس";
+
+  static String m9(percent, completed, total) =>
       "${percent}% · ${completed} من ${total}";
 
-  static String m8(percent) => "${percent}%";
+  static String m10(percent) => "${percent}%";
 
-  static String m9(number) => "القسم ${number}";
+  static String m11(number) => "القسم ${number}";
 
-  static String m10(speed) => "${speed}x";
+  static String m12(count) =>
+      "${Intl.plural(count, zero: 'لا أقسام', one: 'قسم واحد', two: 'قسمان', few: '${count} أقسام', many: '${count} قسماً', other: '${count} قسم')}";
 
-  static String m11(position, remaining) =>
+  static String m13(speed) => "${speed}x";
+
+  static String m14(position, remaining) =>
       "توقفت عند ${position} / متبقٍ ${remaining}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "allCoursesTitle": MessageLookupByLibrary.simpleMessage("كل الدورات"),
-    "appTitle": MessageLookupByLibrary.simpleMessage("ثاهين"),
-    "autoCompleteHint": MessageLookupByLibrary.simpleMessage(
-      "يكتمل تلقائياً عند مشاهدة 99%",
-    ),
+    "appTitle": MessageLookupByLibrary.simpleMessage("ذهين"),
+    "autoCompleteHint": m0,
     "backToCourses": MessageLookupByLibrary.simpleMessage("العودة إلى الدورات"),
-    "continueLessonButton": m0,
+    "continueLessonButton": m1,
     "continueWatchingTitle": MessageLookupByLibrary.simpleMessage(
       "أكمل المشاهدة",
     ),
-    "courseDetailsSubtitle": m1,
+    "courseAssetMissing": MessageLookupByLibrary.simpleMessage(
+      "ملف بيانات الدورات غير موجود",
+    ),
+    "courseDetailsSubtitle": m2,
     "courseNotFound": MessageLookupByLibrary.simpleMessage(
       "لم يتم العثور على الدورة",
     ),
@@ -82,37 +90,36 @@ class MessageLookup extends MessageLookupByLibrary {
     "languageToggleTooltip": MessageLookupByLibrary.simpleMessage(
       "تبديل اللغة",
     ),
-    "lessonOfTotal": m2,
-    "lessonOfTotalWithSection": m3,
-    "lessonsCount": m4,
-    "lockedSheetBody": m5,
+    "lessonOfTotal": m3,
+    "lessonOfTotalWithSection": m4,
+    "lessonsCount": m5,
+    "lockedSheetBody": m6,
     "lockedSheetOk": MessageLookupByLibrary.simpleMessage("حسناً"),
-    "lockedSheetOpenRequired": m6,
+    "lockedSheetOpenRequired": m7,
     "lockedSheetTitle": MessageLookupByLibrary.simpleMessage(
       "خطوة واحدة قبل هذا الدرس",
     ),
     "nextLessonLabel": MessageLookupByLibrary.simpleMessage("الدرس التالي"),
-    "nextLessonLocked": MessageLookupByLibrary.simpleMessage(
-      "يُفتح بعد إكمال 99% من هذا الدرس",
-    ),
+    "nextLessonLocked": m8,
     "noCoursesYet": MessageLookupByLibrary.simpleMessage("لا توجد دورات بعد"),
     "noSearchResults": MessageLookupByLibrary.simpleMessage(
       "لا توجد نتائج مطابقة",
     ),
-    "overallProgressLabel": m7,
-    "percentLabel": m8,
+    "overallProgressLabel": m9,
+    "percentLabel": m10,
     "progressCacheFailure": MessageLookupByLibrary.simpleMessage(
       "تعذر حفظ التقدم",
     ),
     "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
     "searchHint": MessageLookupByLibrary.simpleMessage("ابحث عن دورة أو مدرب"),
-    "sectionNumberLabel": m9,
-    "speedMultiplier": m10,
+    "sectionNumberLabel": m11,
+    "sectionsCount": m12,
+    "speedMultiplier": m13,
     "statusCompleted": MessageLookupByLibrary.simpleMessage("مكتمل"),
     "statusInProgress": MessageLookupByLibrary.simpleMessage("قيد المشاهدة"),
     "statusLocked": MessageLookupByLibrary.simpleMessage("مقفل"),
     "statusNotStarted": MessageLookupByLibrary.simpleMessage("لم يبدأ"),
-    "stoppedAtRemaining": m11,
+    "stoppedAtRemaining": m14,
     "themeToggleTooltip": MessageLookupByLibrary.simpleMessage("تبديل المظهر"),
     "videoLoadError": MessageLookupByLibrary.simpleMessage(
       "تعذّر تشغيل الفيديو",

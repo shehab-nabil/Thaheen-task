@@ -167,7 +167,8 @@ class PlayerCubit extends Cubit<PlayerState> {
     // OR in the platform's own "reached the end" signal: on a very short
     // clip, the last reported position can land a few ms short of the 99%
     // mark, and this still catches it as a real completion.
-    final completedNow = value.isCompleted ||
+    final completedNow =
+        value.isCompleted ||
         _calculator.isCompletedGiven(
           wasCompleted: current.isCompleted,
           positionMs: value.position.inMilliseconds,
@@ -246,6 +247,7 @@ class PlayerCubit extends Cubit<PlayerState> {
       lessonId: current.lessonId,
       positionMs: controller.value.position.inMilliseconds,
       durationMs: controller.value.duration.inMilliseconds,
+      isCompletedHint: current.isCompleted,
     );
   }
 

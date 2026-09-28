@@ -117,9 +117,7 @@ void main() {
     test('a completed lesson reports as completed regardless of position', () {
       final statuses = calculator.statusesFor(
         lessonIds: const ['l1'],
-        progressByLessonId: {
-          'l1': progress(lessonId: 'l1', isCompleted: true),
-        },
+        progressByLessonId: {'l1': progress(lessonId: 'l1', isCompleted: true)},
       );
       expect(statuses[0], LessonStatus.completed);
     });
@@ -239,9 +237,7 @@ void main() {
       final canGoNext = calculator.canGoToNextLesson(
         lessonIds: const ['l1', 'l2'],
         currentLessonId: 'l1',
-        progressByLessonId: {
-          'l1': progress(lessonId: 'l1', isCompleted: true),
-        },
+        progressByLessonId: {'l1': progress(lessonId: 'l1', isCompleted: true)},
       );
       expect(canGoNext, isTrue);
     });
@@ -259,9 +255,7 @@ void main() {
       final canGoNext = calculator.canGoToNextLesson(
         lessonIds: const ['l1', 'l2'],
         currentLessonId: 'l2',
-        progressByLessonId: {
-          'l2': progress(lessonId: 'l2', isCompleted: true),
-        },
+        progressByLessonId: {'l2': progress(lessonId: 'l2', isCompleted: true)},
       );
       expect(canGoNext, isFalse);
     });

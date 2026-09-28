@@ -28,7 +28,11 @@ class AppEmptyView extends StatelessWidget {
           children: [
             Icon(icon, size: 48, color: colors.onSurfaceVariant),
             const SizedBox(height: AppSpacing.md),
-            Text(title, textAlign: TextAlign.center, style: textTheme.bodyLarge),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: textTheme.bodyLarge,
+            ),
             if (actionLabel != null && onAction != null) ...[
               const SizedBox(height: AppSpacing.lg),
               OutlinedButton(onPressed: onAction, child: Text(actionLabel!)),

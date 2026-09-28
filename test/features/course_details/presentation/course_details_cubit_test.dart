@@ -79,9 +79,9 @@ void main() {
     blocTest<CourseDetailsCubit, CourseDetailsState>(
       'emits [loading, success] with per-lesson statuses and progress',
       setUp: () {
-        when(() => getCourseByIdUseCase('anatomy-101')).thenAnswer(
-          (_) async => Right(course),
-        );
+        when(
+          () => getCourseByIdUseCase('anatomy-101'),
+        ).thenAnswer((_) async => Right(course));
         when(() => getAllProgressUseCase()).thenAnswer(
           (_) async => const Right({
             'l1': LessonProgressModel(
@@ -99,11 +99,11 @@ void main() {
       expect: () => [
         const CourseDetailsState.loading(),
         isA<CourseDetailsSuccess>()
-            .having(
-              (s) => s.lessonStatuses,
-              'lessonStatuses',
-              [LessonStatus.completed, LessonStatus.notStarted, LessonStatus.locked],
-            )
+            .having((s) => s.lessonStatuses, 'lessonStatuses', [
+              LessonStatus.completed,
+              LessonStatus.notStarted,
+              LessonStatus.locked,
+            ])
             .having((s) => s.progressPercent, 'progressPercent', 33)
             .having((s) => s.completedLessons, 'completedLessons', 1)
             .having(
@@ -117,9 +117,9 @@ void main() {
     blocTest<CourseDetailsCubit, CourseDetailsState>(
       'emits [loading, failure] when the course lookup fails',
       setUp: () {
-        when(() => getCourseByIdUseCase('missing')).thenAnswer(
-          (_) async => const Left(ParseFailure('not found')),
-        );
+        when(
+          () => getCourseByIdUseCase('missing'),
+        ).thenAnswer((_) async => const Left(ParseFailure('not found')));
       },
       build: buildCubit,
       act: (cubit) => cubit.loadCourse('missing'),
@@ -134,9 +134,9 @@ void main() {
     blocTest<CourseDetailsCubit, CourseDetailsState>(
       'tapping a locked lesson surfaces the locked-tap effect',
       setUp: () {
-        when(() => getCourseByIdUseCase('anatomy-101')).thenAnswer(
-          (_) async => Right(course),
-        );
+        when(
+          () => getCourseByIdUseCase('anatomy-101'),
+        ).thenAnswer((_) async => Right(course));
         when(() => getAllProgressUseCase()).thenAnswer(
           (_) async => const Right({
             'l1': LessonProgressModel(
@@ -170,14 +170,14 @@ void main() {
       'points to the first unfinished lesson, not just index - 1, when '
       'several lessons in a row are locked',
       setUp: () {
-        when(() => getCourseByIdUseCase('anatomy-101')).thenAnswer(
-          (_) async => Right(course),
-        );
+        when(
+          () => getCourseByIdUseCase('anatomy-101'),
+        ).thenAnswer((_) async => Right(course));
         // No progress at all: l1 is unlocked/not-started, l2 and l3 are
         // both locked (l3 locked via l2, which is itself locked via l1).
-        when(() => getAllProgressUseCase()).thenAnswer(
-          (_) async => const Right({}),
-        );
+        when(
+          () => getAllProgressUseCase(),
+        ).thenAnswer((_) async => const Right({}));
       },
       build: buildCubit,
       act: (cubit) async {
@@ -199,9 +199,9 @@ void main() {
     blocTest<CourseDetailsCubit, CourseDetailsState>(
       'tapping an unlocked lesson does nothing',
       setUp: () {
-        when(() => getCourseByIdUseCase('anatomy-101')).thenAnswer(
-          (_) async => Right(course),
-        );
+        when(
+          () => getCourseByIdUseCase('anatomy-101'),
+        ).thenAnswer((_) async => Right(course));
         when(() => getAllProgressUseCase()).thenAnswer(
           (_) async => const Right({
             'l1': LessonProgressModel(
@@ -226,9 +226,9 @@ void main() {
     blocTest<CourseDetailsCubit, CourseDetailsState>(
       'clearLockedTap resets the effect back to null',
       setUp: () {
-        when(() => getCourseByIdUseCase('anatomy-101')).thenAnswer(
-          (_) async => Right(course),
-        );
+        when(
+          () => getCourseByIdUseCase('anatomy-101'),
+        ).thenAnswer((_) async => Right(course));
         when(() => getAllProgressUseCase()).thenAnswer(
           (_) async => const Right({
             'l1': LessonProgressModel(
@@ -263,12 +263,12 @@ void main() {
       'emits empty when the course has no lessons',
       setUp: () {
         final emptyCourse = course.copyWith(sections: const []);
-        when(() => getCourseByIdUseCase('anatomy-101')).thenAnswer(
-          (_) async => Right(emptyCourse),
-        );
-        when(() => getAllProgressUseCase()).thenAnswer(
-          (_) async => const Right({}),
-        );
+        when(
+          () => getCourseByIdUseCase('anatomy-101'),
+        ).thenAnswer((_) async => Right(emptyCourse));
+        when(
+          () => getAllProgressUseCase(),
+        ).thenAnswer((_) async => const Right({}));
       },
       build: buildCubit,
       act: (cubit) => cubit.loadCourse('anatomy-101'),

@@ -21,6 +21,10 @@ sealed class CourseDetailsState with _$CourseDetailsState {
   const factory CourseDetailsState.success({
     required CourseModel course,
     required List<LessonStatus> lessonStatuses,
+
+    /// Parallel to [lessonStatuses]: each lesson's watched percent, used
+    /// for the in-progress mini progress bar on its tile.
+    required List<int> lessonProgressPercent,
     required int progressPercent,
     required int completedLessons,
     LessonModel? nextUnfinishedLesson,

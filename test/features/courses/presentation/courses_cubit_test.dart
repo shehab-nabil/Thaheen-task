@@ -81,12 +81,12 @@ void main() {
     blocTest<CoursesCubit, CoursesState>(
       'emits [loading, success] with computed progress when courses load',
       setUp: () {
-        when(() => getCoursesUseCase()).thenAnswer(
-          (_) async => Right([anatomy, physiology]),
-        );
-        when(() => getAllProgressUseCase()).thenAnswer(
-          (_) async => const Right({}),
-        );
+        when(
+          () => getCoursesUseCase(),
+        ).thenAnswer((_) async => Right([anatomy, physiology]));
+        when(
+          () => getAllProgressUseCase(),
+        ).thenAnswer((_) async => const Right({}));
       },
       build: buildCubit,
       act: (cubit) => cubit.loadCourses(),
@@ -107,9 +107,9 @@ void main() {
     blocTest<CoursesCubit, CoursesState>(
       'emits [loading, failure] when the courses use case fails',
       setUp: () {
-        when(() => getCoursesUseCase()).thenAnswer(
-          (_) async => const Left(ParseFailure('boom')),
-        );
+        when(
+          () => getCoursesUseCase(),
+        ).thenAnswer((_) async => const Left(ParseFailure('boom')));
       },
       build: buildCubit,
       act: (cubit) => cubit.loadCourses(),
@@ -122,25 +122,24 @@ void main() {
     blocTest<CoursesCubit, CoursesState>(
       'emits [loading, empty] when there are no courses',
       setUp: () {
-        when(() => getCoursesUseCase()).thenAnswer((_) async => const Right([]));
-        when(() => getAllProgressUseCase()).thenAnswer(
-          (_) async => const Right({}),
-        );
+        when(
+          () => getCoursesUseCase(),
+        ).thenAnswer((_) async => const Right([]));
+        when(
+          () => getAllProgressUseCase(),
+        ).thenAnswer((_) async => const Right({}));
       },
       build: buildCubit,
       act: (cubit) => cubit.loadCourses(),
-      expect: () => [
-        const CoursesState.loading(),
-        const CoursesState.empty(),
-      ],
+      expect: () => [const CoursesState.loading(), const CoursesState.empty()],
     );
 
     blocTest<CoursesCubit, CoursesState>(
       'builds the continue-watching card from the in-progress lesson',
       setUp: () {
-        when(() => getCoursesUseCase()).thenAnswer(
-          (_) async => Right([anatomy, physiology]),
-        );
+        when(
+          () => getCoursesUseCase(),
+        ).thenAnswer((_) async => Right([anatomy, physiology]));
         when(() => getAllProgressUseCase()).thenAnswer(
           (_) async => const Right({
             'l1': LessonProgressModel(
@@ -170,12 +169,12 @@ void main() {
     blocTest<CoursesCubit, CoursesState>(
       'filters courses by title/instructor in the given language',
       setUp: () {
-        when(() => getCoursesUseCase()).thenAnswer(
-          (_) async => Right([anatomy, physiology]),
-        );
-        when(() => getAllProgressUseCase()).thenAnswer(
-          (_) async => const Right({}),
-        );
+        when(
+          () => getCoursesUseCase(),
+        ).thenAnswer((_) async => Right([anatomy, physiology]));
+        when(
+          () => getAllProgressUseCase(),
+        ).thenAnswer((_) async => const Right({}));
       },
       build: buildCubit,
       act: (cubit) async {
@@ -196,12 +195,12 @@ void main() {
     blocTest<CoursesCubit, CoursesState>(
       'clearing the query restores the full course list',
       setUp: () {
-        when(() => getCoursesUseCase()).thenAnswer(
-          (_) async => Right([anatomy, physiology]),
-        );
-        when(() => getAllProgressUseCase()).thenAnswer(
-          (_) async => const Right({}),
-        );
+        when(
+          () => getCoursesUseCase(),
+        ).thenAnswer((_) async => Right([anatomy, physiology]));
+        when(
+          () => getAllProgressUseCase(),
+        ).thenAnswer((_) async => const Right({}));
       },
       build: buildCubit,
       act: (cubit) async {

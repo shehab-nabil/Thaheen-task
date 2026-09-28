@@ -96,7 +96,10 @@ class ProgressCalculator {
   /// Where to resume playback: the saved position, unless it falls within
   /// the last [resumeNearEndThresholdSeconds] of the video, in which case
   /// playback restarts from 0.
-  int resumePositionMs({required int savedPositionMs, required int durationMs}) {
+  int resumePositionMs({
+    required int savedPositionMs,
+    required int durationMs,
+  }) {
     if (durationMs <= 0) return savedPositionMs;
     final remainingMs = durationMs - savedPositionMs;
     if (remainingMs <= resumeNearEndThresholdSeconds * 1000) return 0;

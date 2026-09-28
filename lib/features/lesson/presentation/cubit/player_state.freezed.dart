@@ -125,7 +125,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( String courseId,  String lessonId,  LocalizedTextModel lessonTitle,  LocalizedTextModel sectionTitle,  int lessonIndex,  int totalLessons,  LessonStatus status,  bool canGoNext,  Duration position,  Duration duration,  bool isPlaying,  double speed,  bool isCompleted,  String? nextLessonId,  VideoPlayerController? controller,  String? videoError)?  ready,TResult Function( String message)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( String courseId,  String lessonId,  LocalizedTextModel lessonTitle,  LocalizedTextModel sectionTitle,  int lessonIndex,  int totalLessons,  LessonStatus status,  bool canGoNext,  Duration position,  Duration duration,  bool isPlaying,  double speed,  bool isCompleted,  String? nextLessonId,  VideoPlayerController? controller,  VideoFailure? videoError)?  ready,TResult Function( String message)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case PlayerInitial() when initial != null:
 return initial();case PlayerLoading() when loading != null:
@@ -149,7 +149,7 @@ return failure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( String courseId,  String lessonId,  LocalizedTextModel lessonTitle,  LocalizedTextModel sectionTitle,  int lessonIndex,  int totalLessons,  LessonStatus status,  bool canGoNext,  Duration position,  Duration duration,  bool isPlaying,  double speed,  bool isCompleted,  String? nextLessonId,  VideoPlayerController? controller,  String? videoError)  ready,required TResult Function( String message)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( String courseId,  String lessonId,  LocalizedTextModel lessonTitle,  LocalizedTextModel sectionTitle,  int lessonIndex,  int totalLessons,  LessonStatus status,  bool canGoNext,  Duration position,  Duration duration,  bool isPlaying,  double speed,  bool isCompleted,  String? nextLessonId,  VideoPlayerController? controller,  VideoFailure? videoError)  ready,required TResult Function( String message)  failure,}) {final _that = this;
 switch (_that) {
 case PlayerInitial():
 return initial();case PlayerLoading():
@@ -169,7 +169,7 @@ return failure(_that.message);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( String courseId,  String lessonId,  LocalizedTextModel lessonTitle,  LocalizedTextModel sectionTitle,  int lessonIndex,  int totalLessons,  LessonStatus status,  bool canGoNext,  Duration position,  Duration duration,  bool isPlaying,  double speed,  bool isCompleted,  String? nextLessonId,  VideoPlayerController? controller,  String? videoError)?  ready,TResult? Function( String message)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( String courseId,  String lessonId,  LocalizedTextModel lessonTitle,  LocalizedTextModel sectionTitle,  int lessonIndex,  int totalLessons,  LessonStatus status,  bool canGoNext,  Duration position,  Duration duration,  bool isPlaying,  double speed,  bool isCompleted,  String? nextLessonId,  VideoPlayerController? controller,  VideoFailure? videoError)?  ready,TResult? Function( String message)?  failure,}) {final _that = this;
 switch (_that) {
 case PlayerInitial() when initial != null:
 return initial();case PlayerLoading() when loading != null:
@@ -269,7 +269,7 @@ class PlayerReady implements PlayerState {
  final  bool isCompleted;
  final  String? nextLessonId;
  final  VideoPlayerController? controller;
- final  String? videoError;
+ final  VideoFailure? videoError;
 
 /// Create a copy of PlayerState
 /// with the given fields replaced by the non-null parameter values.
@@ -301,7 +301,7 @@ abstract mixin class $PlayerReadyCopyWith<$Res> implements $PlayerStateCopyWith<
   factory $PlayerReadyCopyWith(PlayerReady value, $Res Function(PlayerReady) _then) = _$PlayerReadyCopyWithImpl;
 @useResult
 $Res call({
- String courseId, String lessonId, LocalizedTextModel lessonTitle, LocalizedTextModel sectionTitle, int lessonIndex, int totalLessons, LessonStatus status, bool canGoNext, Duration position, Duration duration, bool isPlaying, double speed, bool isCompleted, String? nextLessonId, VideoPlayerController? controller, String? videoError
+ String courseId, String lessonId, LocalizedTextModel lessonTitle, LocalizedTextModel sectionTitle, int lessonIndex, int totalLessons, LessonStatus status, bool canGoNext, Duration position, Duration duration, bool isPlaying, double speed, bool isCompleted, String? nextLessonId, VideoPlayerController? controller, VideoFailure? videoError
 });
 
 
@@ -336,7 +336,7 @@ as double,isCompleted: null == isCompleted ? _self.isCompleted : isCompleted // 
 as bool,nextLessonId: freezed == nextLessonId ? _self.nextLessonId : nextLessonId // ignore: cast_nullable_to_non_nullable
 as String?,controller: freezed == controller ? _self.controller : controller // ignore: cast_nullable_to_non_nullable
 as VideoPlayerController?,videoError: freezed == videoError ? _self.videoError : videoError // ignore: cast_nullable_to_non_nullable
-as String?,
+as VideoFailure?,
   ));
 }
 

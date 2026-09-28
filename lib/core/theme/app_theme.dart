@@ -9,26 +9,26 @@ class AppTheme {
   const AppTheme._();
 
   static ThemeData get light => _build(
-        brightness: Brightness.light,
-        background: AppColors.backgroundLight,
-        surface: AppColors.surfaceLight,
-        primary: AppColors.primaryLight,
-        textPrimary: AppColors.textPrimaryLight,
-        textSecondary: AppColors.textSecondaryLight,
-        border: AppColors.borderLight,
-        semanticColors: AppSemanticColors.light,
-      );
+    brightness: Brightness.light,
+    background: AppColors.backgroundLight,
+    surface: AppColors.surfaceLight,
+    primary: AppColors.primaryLight,
+    textPrimary: AppColors.textPrimaryLight,
+    textSecondary: AppColors.textSecondaryLight,
+    border: AppColors.borderLight,
+    semanticColors: AppSemanticColors.light,
+  );
 
   static ThemeData get dark => _build(
-        brightness: Brightness.dark,
-        background: AppColors.backgroundDark,
-        surface: AppColors.surfaceDark,
-        primary: AppColors.primaryDark,
-        textPrimary: AppColors.textPrimaryDark,
-        textSecondary: AppColors.textSecondaryDark,
-        border: AppColors.borderDark,
-        semanticColors: AppSemanticColors.dark,
-      );
+    brightness: Brightness.dark,
+    background: AppColors.backgroundDark,
+    surface: AppColors.surfaceDark,
+    primary: AppColors.primaryDark,
+    textPrimary: AppColors.textPrimaryDark,
+    textSecondary: AppColors.textSecondaryDark,
+    border: AppColors.borderDark,
+    semanticColors: AppSemanticColors.dark,
+  );
 
   static ThemeData _build({
     required Brightness brightness,

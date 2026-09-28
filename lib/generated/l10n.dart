@@ -54,9 +54,9 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `ثاهين`
+  /// `ذهين`
   String get appTitle {
-    return Intl.message('ثاهين', name: 'appTitle', desc: '', args: []);
+    return Intl.message('ذهين', name: 'appTitle', desc: '', args: []);
   }
 
   /// `أهلاً بك`
@@ -225,13 +225,33 @@ class S {
     );
   }
 
-  /// `{instructor} · {sections} أقسام · {lessons} دروس`
-  String courseDetailsSubtitle(String instructor, int sections, int lessons) {
+  /// `{instructor} · {sectionsText} · {lessonsText}`
+  String courseDetailsSubtitle(
+    String instructor,
+    String sectionsText,
+    String lessonsText,
+  ) {
     return Intl.message(
-      '$instructor · $sections أقسام · $lessons دروس',
+      '$instructor · $sectionsText · $lessonsText',
       name: 'courseDetailsSubtitle',
       desc: '',
-      args: [instructor, sections, lessons],
+      args: [instructor, sectionsText, lessonsText],
+    );
+  }
+
+  /// `{count, plural, =0{لا أقسام} =1{قسم واحد} =2{قسمان} few{{count} أقسام} many{{count} قسماً} other{{count} قسم}}`
+  String sectionsCount(int count) {
+    return Intl.plural(
+      count,
+      zero: 'لا أقسام',
+      one: 'قسم واحد',
+      two: 'قسمان',
+      few: '$count أقسام',
+      many: '$count قسماً',
+      other: '$count قسم',
+      name: 'sectionsCount',
+      desc: '',
+      args: [count],
     );
   }
 
@@ -360,23 +380,23 @@ class S {
     );
   }
 
-  /// `يكتمل تلقائياً عند مشاهدة 99%`
-  String get autoCompleteHint {
+  /// `يكتمل تلقائياً عند مشاهدة {percent}%`
+  String autoCompleteHint(int percent) {
     return Intl.message(
-      'يكتمل تلقائياً عند مشاهدة 99%',
+      'يكتمل تلقائياً عند مشاهدة $percent%',
       name: 'autoCompleteHint',
       desc: '',
-      args: [],
+      args: [percent],
     );
   }
 
-  /// `يُفتح بعد إكمال 99% من هذا الدرس`
-  String get nextLessonLocked {
+  /// `يُفتح بعد إكمال {percent}% من هذا الدرس`
+  String nextLessonLocked(int percent) {
     return Intl.message(
-      'يُفتح بعد إكمال 99% من هذا الدرس',
+      'يُفتح بعد إكمال $percent% من هذا الدرس',
       name: 'nextLessonLocked',
       desc: '',
-      args: [],
+      args: [percent],
     );
   }
 
@@ -425,6 +445,16 @@ class S {
     return Intl.message(
       'تعذر قراءة بيانات الدورة',
       name: 'courseParseFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ملف بيانات الدورات غير موجود`
+  String get courseAssetMissing {
+    return Intl.message(
+      'ملف بيانات الدورات غير موجود',
+      name: 'courseAssetMissing',
       desc: '',
       args: [],
     );

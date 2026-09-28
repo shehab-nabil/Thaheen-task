@@ -46,12 +46,18 @@
   "genericErrorTitle": "Something went wrong",
   "genericEmptyTitle": "Nothing here yet",
 
-  "courseDetailsSubtitle": "{instructor} · {sections} sections · {lessons} lessons",
+  "courseDetailsSubtitle": "{instructor} · {sectionsText} · {lessonsText}",
   "@courseDetailsSubtitle": {
     "placeholders": {
       "instructor": { "type": "String" },
-      "sections": { "type": "int" },
-      "lessons": { "type": "int" }
+      "sectionsText": { "type": "String" },
+      "lessonsText": { "type": "String" }
+    }
+  },
+  "sectionsCount": "{count, plural, =0{No sections} one{{count} section} other{{count} sections}}",
+  "@sectionsCount": {
+    "placeholders": {
+      "count": { "type": "int" }
     }
   },
   "overallProgressLabel": "{percent}% · {completed} of {total}",
@@ -108,8 +114,18 @@
       "section": { "type": "String" }
     }
   },
-  "autoCompleteHint": "Completes automatically at 99% watched",
-  "nextLessonLocked": "Unlocks after completing 99% of this lesson",
+  "autoCompleteHint": "Completes automatically at {percent}% watched",
+  "@autoCompleteHint": {
+    "placeholders": {
+      "percent": { "type": "int" }
+    }
+  },
+  "nextLessonLocked": "Unlocks after completing {percent}% of this lesson",
+  "@nextLessonLocked": {
+    "placeholders": {
+      "percent": { "type": "int" }
+    }
+  },
   "nextLessonLabel": "Next Lesson",
   "videoLoadError": "Couldn't play the video",
   "videoLoadErrorBody": "The lesson file is missing or corrupted. Your course progress is saved and unaffected.",
@@ -121,6 +137,7 @@
   },
 
   "courseParseFailure": "Couldn't read course data",
+  "courseAssetMissing": "Course data file is missing",
   "progressCacheFailure": "Couldn't save progress",
   "courseNotFound": "Course not found"
 }

@@ -12,15 +12,12 @@ class GetCourseByIdUseCase {
 
   Future<Either<Failure, CourseModel>> call(String courseId) async {
     final result = await _repository.getCourses();
-    return result.fold(
-      Left.new,
-      (courses) {
-        final matches = courses.where((course) => course.id == courseId);
-        if (matches.isEmpty) {
-          return Left(ParseFailure(S.current.courseNotFound));
-        }
-        return Right(matches.first);
-      },
-    );
+    return result.fold(Left.new, (courses) {
+      final matches = courses.where((course) => course.id == courseId);
+      if (matches.isEmpty) {
+        return Left(ParseFailure(S.current.courseNotFound));
+      }
+      return Right(matches.first);
+    });
   }
 }
