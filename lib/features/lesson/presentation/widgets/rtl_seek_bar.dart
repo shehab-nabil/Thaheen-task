@@ -28,6 +28,17 @@ class RtlSeekBar extends StatefulWidget {
 }
 
 class _RtlSeekBarState extends State<RtlSeekBar> {
+  static const double _trackAreaHeight = 24;
+  static const double _trackThickness = 4;
+  static const double _tickWidth = 2;
+  static const double _tickHeight = 10;
+  static const double _thumbSize = 14;
+
+  static const double _trackTopOffset =
+      (_trackAreaHeight - _trackThickness) / 2;
+  static const double _tickTopOffset = (_trackAreaHeight - _tickHeight) / 2;
+  static const double _thumbTopOffset = (_trackAreaHeight - _thumbSize) / 2;
+
   double? _dragFraction;
 
   double get _fraction {
@@ -72,48 +83,62 @@ class _RtlSeekBarState extends State<RtlSeekBar> {
           },
           onTapUp: (_) => _endDrag(),
           child: SizedBox(
-            height: 24,
+            height: _trackAreaHeight,
             child: Stack(
-              alignment: Alignment.center,
+              // Every child below is Positioned/Positioned.directional.
+              // Non-positioned Stack children (a bare Container, or a
+              // FractionallySizedBox — its own `alignment` only governs its
+              // *child*, not where the box itself sits in the Stack) get
+              // centered by Stack's alignment once they're narrower than
+              // the full width, which is what made the fill look like it
+              // grew from the middle instead of the start edge.
               children: [
-                Container(
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: semantic.track,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-                FractionallySizedBox(
-                  alignment: direction == TextDirection.rtl
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
-                  widthFactor: _fraction,
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  top: _trackTopOffset,
                   child: Container(
-                    height: 4,
+                    height: _trackThickness,
                     decoration: BoxDecoration(
-                      color: colors.primary,
-                      borderRadius: BorderRadius.circular(2),
+                      color: semantic.track,
+                      borderRadius: BorderRadius.circular(_trackThickness / 2),
                     ),
                   ),
                 ),
                 Positioned.directional(
                   textDirection: direction,
-                  start: (widget.completionThreshold * width - 1).clamp(
-                    0.0,
-                    width,
-                  ),
+                  start: 0,
+                  top: _trackTopOffset,
+                  width: _fraction * width,
+                  height: _trackThickness,
                   child: Container(
-                    width: 2,
-                    height: 10,
+                    decoration: BoxDecoration(
+                      color: colors.primary,
+                      borderRadius: BorderRadius.circular(_trackThickness / 2),
+                    ),
+                  ),
+                ),
+                Positioned.directional(
+                  textDirection: direction,
+                  start: (widget.completionThreshold * width - _tickWidth / 2)
+                      .clamp(0.0, width),
+                  top: _tickTopOffset,
+                  child: Container(
+                    width: _tickWidth,
+                    height: _tickHeight,
                     color: semantic.border,
                   ),
                 ),
                 Positioned.directional(
                   textDirection: direction,
-                  start: (_fraction * width - 7).clamp(0.0, width - 14),
+                  start: (_fraction * width - _thumbSize / 2).clamp(
+                    0.0,
+                    width - _thumbSize,
+                  ),
+                  top: _thumbTopOffset,
                   child: Container(
-                    width: 14,
-                    height: 14,
+                    width: _thumbSize,
+                    height: _thumbSize,
                     decoration: BoxDecoration(
                       color: colors.primary,
                       shape: BoxShape.circle,

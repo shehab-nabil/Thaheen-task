@@ -312,4 +312,4 @@ clip actually unlocking the next lesson.
 
 ## 13. Time spent
 
-[X hours]
+[5 hours]
